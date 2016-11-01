@@ -296,7 +296,9 @@
         
         // Apply the transformation and set the origin before the animation begins
         toControllerSnapshot.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
-        toControllerSnapshot.frame = CGRectMake(startPoint.x, startPoint.y, toControllerSnapshot.frame.size.width, toControllerSnapshot.frame.size.height);
+        if (!isnan(startPoint.x) && !isnan(startPoint.y)) {
+            toControllerSnapshot.frame = CGRectMake(startPoint.x, startPoint.y, toControllerSnapshot.frame.size.width, toControllerSnapshot.frame.size.height);
+        }
         
         // Apply the same transform and starting position to the supplementary container
         supplementaryContainer.transform = toControllerSnapshot.transform;
